@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Slider</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      height: 100vh;
+      z-index: 1;
+    }
+
+    .image {
+      width: 300px;
+      height: 200px;
+      border: solid 5px red;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .image img {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    .b1, .b2 {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+    }
+
+    .b1:hover, .b2:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<video src="https://static.videezy.com/system/resources/previews/000/007/313/original/Plexus.mp4" autoplay loop muted class="video"></video>
+
+<div class="container">
+  <button class="b1" onclick="showPrevious()">PREVIOUS</button>
+  <div class="image">
+    <img id="slider-image" src="https://picsum.photos/id/1015/600/400" alt="Slider Image">
+  </div>
+  <button class="b2" onclick="showNext()">NEXT</button>
+</div>
+
+<script>
+  const images = [
+   "https://4kwallpapers.com/images/walls/thumbs_2t/21946.jpg",
+    "https://4kwallpapers.com/images/walls/thumbs_2t/21899.jpg",
+    "https://4kwallpapers.com/images/walls/thumbs_2t/21839.jpg",
+    "https://4kwallpapers.com/images/walls/thumbs_2t/21938.jpg",
+    "https://4kwallpapers.com/images/walls/thumbs_2t/21836.jpg",
+    "https://4kwallpapers.com/images/walls/thumbs_2t/21985.jpg"
+  ];
+
+  let currentIndex = 0;
+  const imageElement = document.getElementById("slider-image");
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    imageElement.src = images[currentIndex];
+  }
+
+  function showPrevious() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    imageElement.src = images[currentIndex];
+  }
+</script>
+
+</body>
+</html>
